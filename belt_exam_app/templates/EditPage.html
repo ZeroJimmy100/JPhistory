@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+</head>
+
+<body>
+    <h4>Edit My Account</h4>
+    <div id = "edit">
+        <a href="/success/{{this_user.id}}">Back</a>
+    </div>
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+    <div id=LogoutBox>
+        <form action = "/logoutUser" method="POST">
+            {% csrf_token %}
+            <input type = "submit" value="Logout">
+        </form>
+    </div>
+    <form action="/edit/{{this_user.id}}" method="POST">
+        {% csrf_token %}
+        <h5>First Name: </h5>
+        <input type="text" name = "change_first" value="{{this_user.first_name}}">
+        <h5>Last Name: </h5>
+        <input type="text" name = "change_last" value="{{this_user.last_name}}">
+        <h5>Email: </h5>
+        <input type="text" name = "change_email" value="{{this_user.email}}">
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>

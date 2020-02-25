@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/viewUser.css' %}">
+</head>
+
+<body>
+    <h4>{{ this_user.first_name }} {{ this_user.last_name }}'s Quotes</h4>
+    <div id=back>
+        <a href="/success/{{ user.id }}">Back</a>
+    </div>
+    <div id="LogoutBox">
+        <form action="/logoutUser" method = "POST">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+    {% for quote_posted in make_quotes %}
+        <p>"{{ quote_posted.quote }}"</p>
+        
+        <div id = "likeBox"></div>
+            <form action="/addlikes/{{this_user.id}}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{quote_posted.id}}">
+                <input type="submit" value="Like">
+            </form>
+        </div>
+ 
+        <div id="unlikeBox">
+            <form action="/delete/likes/{{this_user.id}}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="bad_id" value="{{quote_posted.id}}">
+                <input type="submit" value="Unlike">
+            </form>
+        </div>
+    {% endfor %}
+    
+    <p>People who like this thought:</p>
+    {% for all_other_likes in this_likes %}
+        <p>first name: {{ all_other_likes.get_like_user.first_name }} last name: {{ all_other_likes.get_like_user.last_name }}</p>
+    {% endfor %}
+
+</body>
+
+</html>

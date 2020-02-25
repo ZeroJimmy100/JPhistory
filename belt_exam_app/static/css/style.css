@@ -1,0 +1,69 @@
+#wrapper{
+    width: 970px;
+    min-height: 900px;
+    background-color: white;
+    margin: 0px auto;
+}
+
+.Regist_space{
+    display: inline-block;
+}
+
+.log{
+    display: inline-block;
+    margin-left: 300px;
+}
+
+.login_users{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#registerBox{
+    height:400px;
+    width:420px;
+    background-color: white;
+    display: inline-block;
+    border-style: double;
+}
+
+#loginBox{
+    height: 400px;
+    width: 408px;
+    background-color:white;
+    display: inline-block;
+    vertical-align: top;
+    border-style: double;
+}
+
+#spaceboxes{
+    width:322px;
+    height: 55px;
+    display: inline-block;
+    background-color: white;
+    border-style: double;
+    text-align: center;
+    margin-top: 5px;
+}
+
+li{
+    list-style: none;
+    margin-top: 15px;
+}
+
+#loginbutton{
+height: 35px;
+width: 62px;
+background-color: white;
+text-align: center;
+margin: auto;
+
+}
+
+#regis_button{
+height: 35px;
+width: 100px;
+background-color: white;
+text-align: center;
+margin: auto;
+}

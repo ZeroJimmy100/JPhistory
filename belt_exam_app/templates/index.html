@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div id="wrapper">
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        
+            <h1 class="Regist_space">Registration</h1> 
+                <h1 class="log">Login</h1>
+            <div id="registerBox">
+                <form action='/success/create' method='post'>
+                    {% csrf_token %}
+        
+                <ul class="register_users">
+                    <div id=spaceboxes>
+                        <li>First Name  <input type="text" name = "type_first_name"></li>
+                    </div>
+                    <div id=spaceboxes>
+                        <li>Last Name  <input type="text" name = "type_last_name"></li>
+                    </div>
+                    <div id=spaceboxes>
+                        <li>Email  <input type="text" name = "type_email"></li>
+                    </div>
+                    <div id="spaceboxes">
+                        <li>Password  <input type="password" name = "type_password"></li>
+                    </div>
+                    <div id="spaceboxes">
+                        <li>Confirm Password  <input type="password" name = "type_confirm"></li>
+                    </div>
+                </ul>
+
+                <div id="regis_button">
+                    <input type="submit" value = "Register">
+                </form>
+            </div>
+            </div>
+            
+            <div id="loginBox">
+            <form action='/login/display' method='post'>
+                {% csrf_token %}
+        <ul class="login_users">
+            <div id="spaceboxes">
+                <li>Email <input type="text" name = "type_login_email"></li>
+            </div>
+            <div id="spaceboxes">
+                <li>Password  <input type="password" name = "type_login_password"></li>
+            </div>
+        </ul>
+
+        <div id="loginbutton">
+            <input type="submit" value = "Login">
+        </form>
+        </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

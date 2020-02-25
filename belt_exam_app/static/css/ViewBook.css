@@ -1,0 +1,16 @@
+#addReviewBox{
+    height:400px;
+    width:300px;
+    background-color: white;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+#theReviews{
+    min-height: 550px;
+    width: 445px;
+    background-color: white;
+    display: inline-block;
+    overflow-y: auto;
+}

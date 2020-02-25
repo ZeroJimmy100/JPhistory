@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/BookPage.css' %}">
+</head>
+
+<body>
+    <div id="wrapper">
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        
+        <h3 id="welcomeword">Welcome, {{ create_user.first_name }}!</h3>
+        <div id="edit">
+            <a href = "/myaccount/{{ create_user.id }}" id = "editPage">Edit My Account</a>
+            
+            <div id="LogoutBox">
+                <form action ="/logoutUser" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+        </div>
+        <br>
+        <div id="topThreeBox">
+            <form action="/quotes/create" method="POST">
+                {% csrf_token %}
+                <input type="text" name = "quote_add">
+                <input type="submit" value = "Add Thought">
+            </form>
+            <h4>Recent Thoughts:</h4>
+            <br>
+            {% for top_quotes in three_quotes %}
+                        <p>"{{ top_quotes.quote }}"</p>
+                        <p>Posted by: {{ top_quotes.uploaded_by.first_name }} {{ top_quotes.uploaded_by.last_name }}</p>
+                        <p> {{ top_quotes.my_likes.all|length }} people like this</p>
+                        <a href="/users/{{ top_quotes.uploaded_by.id }}">Details</a><br> 
+                        {% if create_user.id == top_quotes.uploaded_by.id %}
+                        <div id="deleteBox">
+                            <form action="/delete/post/{{top_quotes.id}}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{top_quotes.id}}">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </div>
+                        {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

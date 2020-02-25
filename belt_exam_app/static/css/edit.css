@@ -1,0 +1,19 @@
+#LogoutBox{
+    height: 100px;
+    width: 50px;
+    display: inline-block;
+    text-align: right;
+}
+
+#edit{
+    height: 25px;
+    width: 200px;
+    background-color: white;
+    display: inline-block;
+    text-align: right;
+}
+
+h4{
+    vertical-align: top;
+    display: inline-block;
+}
